@@ -36,6 +36,7 @@ input {
   background: none;
   outline: none;
 }
+/* 解决 button安装ios样式问题 */
 input[type=button] {
-  cursor: pointer; -webkit-appearance: none; 
+ -webkit-appearance: none; 
 }

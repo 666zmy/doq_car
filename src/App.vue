@@ -86,30 +86,29 @@
         <div class="check_box">
           <div class="check_left">
             <p>
-              <input type="checkbox" v-model="form.house" />
-              <van-icon name="success" />
+              <i class="iconfont" :class="form.house ? 'icon-checkbox1':'icon-checkbox'" @click="form.house = !form.house"/>
               <span>我有房</span>
             </p>
             <p>
-              <input type="checkbox" v-model="form.accumulationFund" />
+              <i class="iconfont" :class="form.accumulationFund ? 'icon-checkbox1':'icon-checkbox'" @click="form.accumulationFund = !form.accumulationFund"/>
               <span>我有公积金</span>
             </p>
             <p>
-              <input type="checkbox" v-model="form.businessOwners" />
+              <i class="iconfont" :class="form.businessOwners ? 'icon-checkbox1':'icon-checkbox'" @click="form.businessOwners = !form.businessOwners"/>
               <span>我是企业主</span>
             </p>
           </div>
           <div class="check_right">
             <p>
-              <input type="checkbox" v-model="form.insurancePolicy" />
+              <i class="iconfont" :class="form.insurancePolicy ? 'icon-checkbox1':'icon-checkbox'" @click="form.insurancePolicy = !form.insurancePolicy"/>
               <span>我有寿险保单</span>
             </p>
             <p>
-              <input type="checkbox" v-model="form.personalTax" />
+              <i class="iconfont" :class="form.personalTax ? 'icon-checkbox1':'icon-checkbox'" @click="form.personalTax = !form.personalTax"/>
               <span>我有个税</span>
             </p>
             <p>
-              <input type="checkbox" v-model="form.officeWorker" />
+              <i class="iconfont" :class="form.officeWorker ? 'icon-checkbox1':'icon-checkbox'" @click="form.officeWorker = !form.officeWorker"/>
               <span>我是上班族</span>
             </p>
           </div>
@@ -124,7 +123,7 @@
             :class="{ disabledSubmit: !form.agreement }"
           />
           <div class="user_agree">
-            <input type="checkbox" v-model="form.agreement" />
+            <i class="iconfont" :class="form.agreement ? 'icon-checkbox1':'icon-checkbox'" @click="form.agreement = !form.agreement"/>
             <span>我已经阅读并接受</span>
             <span>
               <i class="iconfont icon-jiantou_zuo"></i>
@@ -469,15 +468,14 @@ export default {
         justify-content: space-between;
         color: #989898;
         font-size: 0.8rem;
-        input {
-          width: 0.8rem;
-          height: 0.8rem;
+        p {
+          display: flex;
+          align-items: center;
+          .icon-checkbox1 {
+            color: #597cf4;
+            font-weight: 700;
+          }
         }
-        input[type='checkbox']:checked {
-          color: #fff;
-          background: #005cc8;
-        }
-
         span {
           margin-left: 0.5rem;
         }
@@ -503,10 +501,12 @@ export default {
           align-items: center;
           justify-content: center;
           font-size: 0.5rem;
-          input {
-            width: 0.8rem;
-            height: 0.8rem;
-            border-radius: 50%;
+          .icon-checkbox {
+           color: #a1a1a1;
+          }
+          .icon-checkbox1 {
+            color: #597cf4;
+            font-weight: 700;
           }
           span:nth-of-type(1) {
             color: #aeaeae;

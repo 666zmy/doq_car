@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "384475",
+      "name": "checkbox",
+      "font_class": "checkbox",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "6664140",
+      "name": "checkbox",
+      "font_class": "checkbox1",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "8341757",
       "name": "箭头2_右",
       "font_class": "jiantou_you",
