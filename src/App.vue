@@ -74,7 +74,10 @@
             max="11"
           />
         </div>
-        <div class="userInfo_item noteCode" v-if="$route.query.isNeedSms &&JSON.parse($route.query.isNeedSms)">
+        <div
+          class="userInfo_item noteCode"
+          v-if="$route.query.isNeedSms && JSON.parse($route.query.isNeedSms)"
+        >
           <img src="./assets/carImage/BrowserPreview_tmp_35.jpg" />
           <input
             type="text"
@@ -227,13 +230,19 @@
         @confirm="onAreaConfirm"
       />
     </van-popup>
+    <div class="action_mode" v-if="isActionSuccess"></div>
+    <div class="action_sucess" v-if="isActionSuccess">
+      <img src="./assets/carImage/actionSuccess.png" />
+      <span>提交成功，稍后会有工作人员和您取的联系</span>
+      <span>请留意来电，谢谢!</span>
+    </div>
   </div>
 </template>
 <script>
 import areaList from './assets/area.js'
 import Vue from 'vue'
-import { Toast, Popup, Picker, Icon,Area,Dialog } from 'vant'
-import { getAreaselect, sendCode,loginFormSubmit } from './api/login'
+import { Toast, Popup, Picker, Icon, Area, Dialog } from 'vant'
+import { getAreaselect, sendCode, loginFormSubmit } from './api/login'
 Vue.use(Toast)
 Vue.use(Picker)
 Vue.use(Popup)
@@ -245,6 +254,7 @@ export default {
   data() {
     return {
       areaList,
+      isActionSuccess: false,
       getCodeFlag: false, // 获取 false ==>验证码文案和  true开始读'秒后重试'文案判断
       btnTitle: '', // 验证码提示信息
       areaPopupVisible: false,
@@ -271,16 +281,14 @@ export default {
       }
     }
   },
-  created() {
-  },
-  mounted() {
-  },
+  created() {},
+  mounted() {},
   methods: {
     showDialogInfo() {
-        Dialog.alert({
-  confirmButtonColor: "#1e70f8",
-  title: '',
-  message: `<div>   尊敬的用户：感谢您选择注册成为吉享云服平台/应用（运营方：浙江鸿曜融资租赁有限公司，以下简称“鸿曜公司”或“我们”）用户。为了维护您的权益，请在点击签署本协议前，审慎阅读、充分理解本协议各部分规则，特别是协议中与免除或者限制责任的条款、法律适用和争议解决相关的加黑加粗文字条款。如对本协议有任何疑问，请向鸿曜公司客服咨询或咨询您的律师或有关专业人士。本协议一经您在鸿曜公司运营的“吉享云服应用”点击确认（或其他类似意思表示，以所在页面显示名称为准）即视为您已完全理解且同意本协议的全部条款，具有法律效力，如您不同意本协议的内容，请您立即停止注册本应用。鸿曜公司有权根据需要不时地修订、修改本协议或各类规则，如本协议有任何变更，鸿曜公司将在“本应用”公告修订内容。如您不同意相关变更，应停止使用“本应用”。各类规则会在发布后生效，亦成为本协议的一部分。登录或继续使用“本应用”将表示您接受经修订的协议。</div>
+      Dialog.alert({
+        confirmButtonColor: '#1e70f8',
+        title: '',
+        message: `<div>   尊敬的用户：感谢您选择注册成为吉享云服平台/应用（运营方：浙江鸿曜融资租赁有限公司，以下简称“鸿曜公司”或“我们”）用户。为了维护您的权益，请在点击签署本协议前，审慎阅读、充分理解本协议各部分规则，特别是协议中与免除或者限制责任的条款、法律适用和争议解决相关的加黑加粗文字条款。如对本协议有任何疑问，请向鸿曜公司客服咨询或咨询您的律师或有关专业人士。本协议一经您在鸿曜公司运营的“吉享云服应用”点击确认（或其他类似意思表示，以所在页面显示名称为准）即视为您已完全理解且同意本协议的全部条款，具有法律效力，如您不同意本协议的内容，请您立即停止注册本应用。鸿曜公司有权根据需要不时地修订、修改本协议或各类规则，如本协议有任何变更，鸿曜公司将在“本应用”公告修订内容。如您不同意相关变更，应停止使用“本应用”。各类规则会在发布后生效，亦成为本协议的一部分。登录或继续使用“本应用”将表示您接受经修订的协议。</div>
   <div>  请您理解本应用提供的服务仅供年满18周岁的成年人使用，请您在使用相关产品 或服务前确保您是 18 周岁 ( 含 ) 以上人士。 如您未达到上述年龄的，请您立即终止使用吉享云服产品服务。如果您为未成年人的法定监护人，请您保证您的被监护人不要使用本服务。</div>
   <p> <h3 style='text-align:left'>第一条 定义</h3>
         1.1吉享云服平台/应用：是由鸿曜公司开发、管理和运营，为用户与第三方金融机构提供资金对接、信息撮合的服务平台，同时也是为与鸿曜公司建立合作关系的金融机构提供金融产品展示的技术服务平台，包括但不限于吉享云服-官微、“吉享云服”官网微信公众号(ID：jixiangyunfu)、吉享云服H5页面等网络媒介平台。(简称“本应用”或“本服务”)
@@ -365,10 +373,10 @@ export default {
   <p>  <h3 style='text-align:left'>第十二条 争议解决</h3>
         12.1本协议适用中华人民共和国法律（仅为本协议之目的，为避免疑义，不包括香港特别行政区、澳门特别行政区及台湾地区法律）。
         12.2因本协议引起的或与本协议有关的争议，双方应共同协商解决。如就争议无法协商一致，均应提交本合同签署地（即杭州市江干区）有管辖权的人民法院经诉讼方式解决。</p>
-  `,
-}).then(() => {
-  // on close
-});
+  `
+      }).then(() => {
+        // on close
+      })
     },
     // 手机号校验
     handlePhoneBlur() {
@@ -426,26 +434,28 @@ export default {
       if (this.validePhoneMethod() && this.getCodeFlag == false) {
         this.getCodeFlag = true
         // 手机号校验通过发送验证码  实现发送倒计时
-        sendCode({ phone: this.form.phone }).then(res => {
-          if(res.data.success) {
-            const timer = setInterval(() => {
-              if (time === 0) {
-                clearInterval(timer)
-                this.getCodeFlag = false
-                this.btnTitle = '获取验证码'
-              } else {
-                this.btnTitle = time + '秒后重试'
-                this.getCodeFlag = true
-                time--
-              }
-            }, 1000)
-          } else {
+        sendCode({ phone: this.form.phone })
+          .then(res => {
+            if (res.data.success) {
+              const timer = setInterval(() => {
+                if (time === 0) {
+                  clearInterval(timer)
+                  this.getCodeFlag = false
+                  this.btnTitle = '获取验证码'
+                } else {
+                  this.btnTitle = time + '秒后重试'
+                  this.getCodeFlag = true
+                  time--
+                }
+              }, 1000)
+            } else {
+              this.getCodeFlag = false
+              Toast(res.data.message)
+            }
+          })
+          .catch(() => {
             this.getCodeFlag = false
-            Toast(res.data.message)
-          }
-        }).catch(() => {
-          this.getCodeFlag = false
-        })
+          })
       }
     },
     // 手机号校验函数
@@ -472,7 +482,11 @@ export default {
       if (!this.validePhoneMethod()) {
         return
       }
-      if (!this.form.code && this.$route.query.isNeedSms&&JSON.parse(this.$route.query.isNeedSms)) {
+      if (
+        !this.form.code &&
+        this.$route.query.isNeedSms &&
+        JSON.parse(this.$route.query.isNeedSms)
+      ) {
         Toast('请输入你的验证码')
         return
       }
@@ -483,19 +497,21 @@ export default {
       this.form.checkBoxObj.insurancePolicy ? (others += '我有寿险保单,') : ''
       this.form.checkBoxObj.personalTax ? (others += '我有个税,') : ''
       this.form.checkBoxObj.officeWorker ? (others += '我是上班族,') : ''
-      others = others.substring(0,others.length-1);
-      this.form.others = others;
+      others = others.substring(0, others.length - 1)
+      this.form.others = others
       console.log(this.form.checkBoxObj, 'checkBoxObj表单提交')
-      let form = JSON.parse(JSON.stringify(this.form));
-      form.channelNo = this.$route.query.channelNo
-      form.isNeedSms = this.$route.query.isNeedSms
+      let form = JSON.parse(JSON.stringify(this.form))
+      form.channelNo = this.$route.query.channelNo ? this.$route.query.channelNo: ''
+      form.isNeedSms = this.$route.query.isNeedSms ? this.$route.query.isNeedSms: false
       delete form.checkBoxObj
       delete form.areaName
-      console.log(form,"form,最后表单提交");
-      loginFormSubmit(form).then((res) => {
-        console.log(res,"请求表单接口");
-        if(res.data.success) {
-            Toast(res.data.message)
+      console.log(form, 'form,最后表单提交')
+      loginFormSubmit(form).then(res => {
+        console.log(res, '请求表单接口')
+        if (res.data.success) {
+          this.isActionSuccess = true
+        } else {
+          this.isActionSuccess = false
         }
       })
     }
@@ -718,6 +734,34 @@ export default {
       font-size: 0.5rem;
       transform: scale(0.9);
       text-align: center;
+    }
+  }
+  .action_mode {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+  .action_sucess {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 26rem;
+    display: table-column;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 9rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin: 0 1rem;
+    span{
+      font-size:.8rem;
     }
   }
 }

@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14242335",
+      "name": "操作成功",
+      "font_class": "caozuochenggong1",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
       "icon_id": "384475",
       "name": "checkbox",
       "font_class": "checkbox",
