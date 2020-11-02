@@ -74,7 +74,7 @@
             max="11"
           />
         </div>
-        <div class="userInfo_item noteCode" v-if="JSON.parse($route.query.isNeedSms)">
+        <div class="userInfo_item noteCode" v-if="$route.query.isNeedSms &&JSON.parse($route.query.isNeedSms)">
           <img src="./assets/carImage/BrowserPreview_tmp_35.jpg" />
           <input
             type="text"
@@ -472,7 +472,7 @@ export default {
       if (!this.validePhoneMethod()) {
         return
       }
-      if (!this.form.code && JSON.parse(this.$route.query.isNeedSms)) {
+      if (!this.form.code && this.$route.query.isNeedSms&&JSON.parse(this.$route.query.isNeedSms)) {
         Toast('请输入你的验证码')
         return
       }

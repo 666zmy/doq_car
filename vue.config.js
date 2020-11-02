@@ -9,6 +9,7 @@ module.exports = {
   // 选项...
   // 如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.my-app.com/my-app/，则设置 publicPath 为 /my-app/。
   // publicPath: '/tools/', // '' 和 './'都是相对路径  js/chunk-vendors1600250024410.js
+  publicPath: './',
   productionSourceMap: false, // 上线打包后文件变小
   devServer: { // 为了本地联调时候 解决跨越问题
     // open: true, // 是否自动弹出浏览器页面
@@ -33,7 +34,7 @@ module.exports = {
       },
     }
   },
-  indexPath: 'interested.html', // 指定生成到打包文件中index.html文件名字
+  indexPath: 'index.html', // 指定生成到打包文件中index.html文件名字
   css: { // css打包文件添加时间戳
     extract: {
       // css添加时间戳
